@@ -8,7 +8,7 @@ import { Explosion } from './explosion';
 const MIN_PLANE_NUM = 1;
 const MAX_PLANE_NUM = 6;
 const MAX_BULLET_NUM = 50;
-const BULLET_RELOAD_TIME = 2;
+const BULLET_RELOAD_TIME = 1;
 
 
 export class PlaneFactory {
@@ -67,8 +67,8 @@ export class PlaneFactory {
 
 
   async createPlane(position) {
-    // const planeNumber = this.getRandomPlaneNum();
-    const planeNumber = 2;
+    const planeNumber = this.getRandomPlaneNum();
+    // const planeNumber = 6;
     const mtlLoader = new MTLLoader();
     mtlLoader.setPath('src/assets/planes/');
     mtlLoader.load(`Plane0${planeNumber}.mtl`, (materials) => {

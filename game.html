@@ -1,0 +1,53 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style src="/src/style.css"></style>
+    <script type="module" crossorigin src="/src/main.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <canvas id="my_canvas"></canvas>
+  </body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" crossorigin src="/src/main.js"></script>
+    <title>Game</title>
+    <style>
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        background: black;
+        color: #00ff99;
+        font-family: 'Campus', sans-serif;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        text-shadow: 0 0 10px #00ff99;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading-screen">Loading...</div>
+    <canvas id="my_canvas" style="display: none;"></canvas>
+
+    <script>
+      // Show loading screen for 5 seconds
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('loading-screen').style.display = 'none';
+          document.getElementById('my_canvas').style.display = 'block';
+        }, 10000); // 5 seconds
+      });
+    </script>
+  </body>
+</html>

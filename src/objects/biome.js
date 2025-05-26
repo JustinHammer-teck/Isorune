@@ -1,6 +1,6 @@
-import { BLOCkS } from '@/game_config/block';
-import ThreeHelper from '@/utils/three_helper';
-import Block, { VoxelFace, BlockType } from '@/objects/blocks';
+import { BLOCkS } from "@/game_config/block";
+import ThreeHelper from "@/utils/three_helper";
+import Block, { VoxelFace, BlockType } from "@/objects/blocks";
 
 /** @import { Terrain } from '@/objects/terrain/terrain'*/
 
@@ -40,8 +40,8 @@ export default class Biome {
           texture,
           tileSize,
           atlasWidth,
-          atlasHeight,
-        ),
+          atlasHeight
+        )
       );
       this.voxels[type] = voxel;
     };
@@ -56,8 +56,8 @@ export default class Biome {
           topTexture,
           tileSize,
           atlasWidth,
-          atlasHeight,
-        ),
+          atlasHeight
+        )
       );
 
       voxel.SetAllFacesUVCoordinate(
@@ -65,9 +65,9 @@ export default class Biome {
           sideTexture,
           tileSize,
           atlasWidth,
-          atlasHeight,
+          atlasHeight
         ),
-        [VoxelFace.TOP],
+        [VoxelFace.TOP]
       );
 
       this.voxels[type] = voxel;
@@ -75,7 +75,6 @@ export default class Biome {
 
     CreateBlock(BlockType.SAND, sand);
     CreateBlock(BlockType.SOIL, dirt);
-    CreateBlock(BlockType.WATER, water);
     CreateVoxelWithTop(BlockType.GRASS, grass.side, grass.top);
     CreateVoxelWithTop(BlockType.SNOW_DIRT, snow.dirt, snow.top);
     CreateVoxelWithTop(BlockType.SNOW_ROCk, snow.rock, snow.top);

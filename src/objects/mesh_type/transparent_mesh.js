@@ -1,6 +1,6 @@
-import MeshFaces from '@/objects/mesh_type/mesh_faces';
-import { VoxelFace, BlockType } from '@/objects/blocks';
-import { Terrain } from '@/objects/terrain/terrain';
+import MeshFaces from "@/objects/mesh_type/mesh_faces";
+import { VoxelFace, BlockType } from "@/objects/blocks";
+import { Terrain } from "@/objects/terrain/terrain";
 
 export default class TransparentFaces extends MeshFaces {
   constructor(material, voxelDefinition) {
@@ -53,7 +53,7 @@ export default class TransparentFaces extends MeshFaces {
         ? neighborBlock.type
         : BlockType.AIR;
 
-      return neighborBlockType !== BlockType.WATER;
+      return neighborBlockType === BlockType.AIR;
     };
 
     this.matrix4buffer.makeTranslation(x, z, y);

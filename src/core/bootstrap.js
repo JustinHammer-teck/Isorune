@@ -1,11 +1,13 @@
-import { LoaderHelper } from '@/utils/loader_helper';
-import * as THREE from 'three';
+import { LoaderHelper } from "@/utils/loader_helper";
+import * as THREE from "three";
 import {
   OrbitControls,
   PointerLockControls,
-} from 'three/examples/jsm/Addons.js';
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-import texturesprite from '@/assets/spritesheet_tiles.png';
+} from "three/examples/jsm/Addons.js";
+import Stats from "three/examples/jsm/libs/stats.module.js";
+import texturesprite from "@/assets/spritesheet_tiles.png";
+import { Terrain } from "@/objects/terrain/terrain";
+import { ControlService } from "@/logics/control";
 
 /** @import { Debugger } from '@/tools/debugger'*/
 
@@ -30,7 +32,15 @@ export class Bootstrap {
     this.renderer = this.CreateRenderer();
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color('#96c5fa');
+    this.scene.background = new THREE.Color("#96c5fa");
+
+    const fogColor = "#96c5fa"; // Match background color
+    // Start fog a bit inside the fully loaded view distance, end it a bit beyond.
+    const nearFogDistance =
+      Terrain.TERRAIN_CHUNk_LIMIT * (ControlService.VIEW_DISTANCE - 1.5);
+    const farFogDistance =
+      Terrain.TERRAIN_CHUNk_LIMIT * (ControlService.VIEW_DISTANCE + 1.5);
+    this.scene.fog = new THREE.Fog(fogColor, nearFogDistance, farFogDistance);
 
     this.camera = this.CreateCamera();
     this.axesHelper = this.CreateAxesHelper();
@@ -41,7 +51,7 @@ export class Bootstrap {
 
   CreateRenderer() {
     const canvas = document.querySelector('#my_canvas');
-    const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+    const renderer = new THREE.WebGLRenderer({ antialias: false, canvas });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.outputEncoding = THREE.sRGBEncoding;
@@ -58,18 +68,18 @@ export class Bootstrap {
       50,
       window.innerWidth / window.innerHeight,
       0.001,
-      1000,
+      1000
     );
     //const camera = new THREE.OrthographicCamera(-50, 50, 50, -50, 0.1, 1000);
     // camera.position.set(60, 40, -40);
     camera.position.set(0, 50, -50);
 
-    const cameraFolder = this.debugger.addFolder('Camera');
-    
-    cameraFolder.add(camera.position, 'x', -100, 100);
-    cameraFolder.add(camera.position, 'y', -100, 100);
-    cameraFolder.add(camera.position, 'z', -100, 100);
-    
+    const cameraFolder = this.debugger.addFolder("Camera");
+
+    cameraFolder.add(camera.position, "x", -100, 100);
+    cameraFolder.add(camera.position, "y", -100, 100);
+    cameraFolder.add(camera.position, "z", -100, 100);
+
     cameraFolder.open();
 
     camera.updateProjectionMatrix();
@@ -94,7 +104,7 @@ export class Bootstrap {
   CreatePointLockControl() {
     const controls = new PointerLockControls(
       this.camera,
-      this.renderer.domElement,
+      this.renderer.domElement
     );
 
     return controls;
@@ -107,7 +117,7 @@ export class Bootstrap {
     /* NOTE:
      * Only re-render when the control change gives us better performance
      * */
-    orbCtl.addEventListener('change', () => {
+    orbCtl.addEventListener("change", () => {
       this.renderer.render(this.scene, this.camera);
     });
     // orbCtl.dampingFactor = 0.07;
