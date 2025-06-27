@@ -4,7 +4,7 @@
 o 
 
 # material
-mtllib Plane04-0.mtl
+mtllib Plane04.mtl
 usemtl palette
 
 # normals

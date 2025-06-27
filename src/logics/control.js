@@ -1,5 +1,5 @@
-import { Terrain } from '@/objects/terrain/terrain';
-import { Vector2, Vector3 } from '@/utils/vector_helper';
+import { Terrain } from "@/objects/terrain/terrain";
+import { Vector2, Vector3 } from "@/utils/vector_helper";
 
 /**
  * @import { App } from '@/core/app';
@@ -46,11 +46,11 @@ export class ControlService {
     this.keyMap = {};
 
     const onDocumentKey = (e) => {
-      this.keyMap[e.code] = e.type === 'keydown';
+      this.keyMap[e.code] = e.type === "keydown";
     };
 
-    document.addEventListener('keydown', onDocumentKey, false);
-    document.addEventListener('keyup', onDocumentKey, false);
+    document.addEventListener("keydown", onDocumentKey, false);
+    document.addEventListener("keyup", onDocumentKey, false);
 
     this.lastPost = new Vector3().clone(this.character.position);
     this.viewedChunkCoordinate = new Vector2();
@@ -99,7 +99,7 @@ export class ControlService {
     ) {
       await this.CreateTerrainChunkOnCharacterPosition(
         this.addChunkToApp,
-        this.removeChunkFromApp,
+        this.removeChunkFromApp
       );
 
       // this.UpdateTerrainOnCharacterPosition(this.removeChunkFromApp);
@@ -142,9 +142,22 @@ export class ControlService {
         } else {
           const chunk = await this.terrain.AppendChunkAsync(
             this.viewedChunkCoordinate,
-            4,
+            4
           );
           await this.terrain.RenderChunks(chunk, this.addChunkToApp);
+
+          // Place buildings on this newly generated chunk
+          if (
+            this.app.buildingCtrl &&
+            this.app.buildingCtrl.placeBuildsOnChunk
+          ) {
+            this.app.buildingCtrl.placeBuildsOnChunk(chunk, this.terrain);
+          }
+
+          // Place trees on this newly generated chunk
+          if (this.app.treeCtrl && this.app.treeCtrl.placeTreesOnChunk) {
+            await this.app.treeCtrl.placeTreesOnChunk(chunk, this.terrain);
+          }
         }
       }
     }

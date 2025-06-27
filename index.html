@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,6 +10,48 @@
   <body>
     <div id="info">instancing - performance</div>
     <h1>Hola</h1>
+    <button onclick="console.log(1)">test</button>
     <canvas id="my_canvas"></canvas>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skybreaker</title>
+
+  <!-- Load the custom font -->
+  <style>
+    @font-face {
+      font-family: 'Campus';
+      src: url('./fonts/CAMPUS PERSONAL USE.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <link rel="stylesheet" href="styles/index.css" />
+</head>
+<body>
+  <div class="welcome-screen">
+    <div class="retro-bg"></div>
+    <div class="scanlines"></div>
+    <div class="menu-content">
+      <h1 class="title">1SKYBREAKER1</h1>
+      <p class="subtitle">Explore the skies. Dominate the horizon.</p>
+      <button id="startButton">Start Game</button>
+
+      <script>
+        document.getElementById('startButton').addEventListener('click', () => {
+          window.location.href = 'jet-selection.html';
+        });
+      </script>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
+

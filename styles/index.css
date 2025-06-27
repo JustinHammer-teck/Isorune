@@ -1,0 +1,140 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  background: #000;
+}
+
+.welcome-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+/* Retro gradient background */
+.retro-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle,
+   #333333 0%, 
+   #111111 25%, 
+   #000000 90%
+  );
+  z-index: 0;
+}
+
+
+/* Scanlines overlay */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(124, 252, 0, 0.05), /* green tinted scanlines */
+    rgba(124, 252, 0, 0.05) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: scanlineMove 5s linear infinite;
+}
+
+/* Animations */
+@keyframes retroGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scanlineMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 4px;
+  }
+}
+
+.menu-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 720px; /* Slightly wider to accommodate longer title */
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.title {
+  font-family: 'Campus', cursive;
+  font-size: 5rem;
+  font-weight: normal;
+  letter-spacing: 0.12em; /* Slightly tighter spacing to fit nicely */
+  color: #7CFC00; /* bright lawn green */
+  text-shadow:
+    0 0 5px #7CFC00,
+    0 0 10px #7CFC00,
+    0 0 20px #7CFC00,
+    0 0 40px #7CFC00;
+  margin-bottom: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.25rem;
+  color: #e0ffe0; /* soft pale green */
+  margin-bottom: 40px;
+  text-shadow: 0 0 4px rgba(124, 252, 0, 0.6);
+}
+
+/* Button */
+button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #7CFC00;
+  background-color: transparent;
+  border: 2px solid #7CFC00;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #7CFC00;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: #7CFC00;
+  color: #001100; /* very dark green for contrast */
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

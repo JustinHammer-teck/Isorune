@@ -1,6 +1,6 @@
-import { InstancedMesh, Matrix4, StaticDrawUsage } from 'three';
-import Block, { BlockType, VoxelFace } from '@/objects/blocks';
-import { Terrain, Chunk } from '@/objects/terrain';
+import { InstancedMesh, Matrix4, StaticDrawUsage } from "three";
+import Block, { BlockType, VoxelFace } from "@/objects/blocks";
+import { Terrain, Chunk } from "@/objects/terrain";
 
 export default class MeshFaces {
   constructor(material, voxelDefinition) {
@@ -63,10 +63,7 @@ export default class MeshFaces {
         ? neighborBlock.type
         : BlockType.AIR;
 
-      return (
-        neighborBlockType === BlockType.AIR ||
-        neighborBlockType === BlockType.WATER
-      );
+      return neighborBlockType === BlockType.AIR;
     };
 
     this.matrix4buffer.makeTranslation(x, z, y);

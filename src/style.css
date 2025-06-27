@@ -1,8 +1,0 @@
-#info {
-    background-color: rgba(0,0,0,0.75);
-}
-
-.lil-gui .gui-stats {
-    line-height: var(--widget-height);
-    padding: var(--padding);
-}

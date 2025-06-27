@@ -6,7 +6,6 @@
 dist/
 
 *.zip
-assets/
 voxel-pack-updated/
 
 # Nix

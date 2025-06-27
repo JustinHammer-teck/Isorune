@@ -1,0 +1,94 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fullscreen canvas */
+#jet-canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  background: radial-gradient(circle, #222 0%, #000 80%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* Title and Button hover on top of canvas */
+.title {
+  position: absolute;
+  top: 20px; /* closer to top */
+  width: 100%;
+  font-weight: normal;
+  text-align: center;
+  font-size: 2.5rem; /* smaller */
+  font-family: 'Campus', cursive;
+  color: #7CFC00;
+  text-shadow:
+    0 0 2px #7CFC00,
+    0 0 5px #7CFC00,
+    0 0 10px #7CFC00; /* reduced halo radius */
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+#startButton {
+  position: absolute;
+  bottom: 30px; /* closer to bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 30px; /* slightly smaller */
+  font-size: 1rem; /* smaller */
+  font-weight: bold;
+  color: #7CFC00;
+  background-color: transparent;
+  border: 2px solid #7CFC00;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #7CFC00; /* slightly reduced glow */
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#select-jet-btn:hover {
+  background-color: #7CFC00;
+  color: #001100;
+}
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #00ff00;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  text-shadow: 0 0 6px #00ff00, 0 0 12px #00ff00;
+  padding: 0 10px;
+  user-select: none;
+}
+
+.arrow-button:hover {
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.arrow-left {
+  left: 20px;
+}
+
+.arrow-right {
+  right: 20px;
+}
